@@ -14,7 +14,7 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
-  }); // Add an empty dependency array to useEffect to run it only once when the component mounts
+  });
 
   return (
     <>
