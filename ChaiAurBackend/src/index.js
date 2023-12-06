@@ -5,7 +5,18 @@ dotenv.config({
   path: "./.env",
 });
 
-connectDB();
+connectDB()
+  .then(() => {
+    app.listen(process.env.PORT || 5000, () => {
+      console.log(`⚙ Server is running on port : ${process.env.PORT}`);
+    });
+
+    app.on("error", (error) => {
+      console.error(`Error: ${error}`);
+      throw err;
+    });
+  })
+  .catch((err) => console.error(`❌ Database connection falied ❌: ${err}`));
 
 /*
 import express from "express";
