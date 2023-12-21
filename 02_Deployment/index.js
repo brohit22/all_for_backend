@@ -40,9 +40,9 @@ const githubData = {
 
 dotenv.config();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello World!');
+// });
 
 app.get('/profile', (req, res) => {
   res.send(`<h1>My Profile </h1>`);
@@ -51,6 +51,34 @@ app.get('/profile', (req, res) => {
 app.get('/github', (req, res) => {
   res.json(githubData);
 });
+
+// * chained route handlers
+app
+  .route('/')
+  .get((req, res) => {
+    res.send('Hello World!');
+  })
+  .post((req, res) => {
+    res.send(`Post Request`);
+  })
+  .put((req, res) => {
+    res.send(`Put request at /user`);
+  })
+  .delete((rea, res) => {
+    res.send(`Delete request at /user`);
+  });
+
+// app.post('/', (res, req) => {
+//   res.send(`Post Request`);
+// });
+
+// app.put('/profile', (req, res) => {
+//   res.send(`Put request at /user`);
+// });
+
+// app.delete('/profile', (req, res) => {
+//   res.send(`Delete request at /user`);
+// });
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Server is running on port : ${process.env.PORT}`);
